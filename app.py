@@ -1,12 +1,20 @@
-from flask import Flask
+from flask import Flask, render_template
 
-app = Flask("meu app")
+app = Flask("Meu App")
 
-#@ é o decorator, que são funções que recebm funções como argumento
+posts = [
+    {
+        "titulo": "Minha primeira postagem",
+        "texto": "teste"
+    },
+    {
+        "Titulo": "Minha segunda postagem",
+        "texto": "outro teste"
+    }
+]
+
 @app.route('/')
-def hello():
-    return "<p>Hello World</p>"
+def exibir_entradas():
+    entradas = posts #mock das postagens
+    return render_template('exibir_entradas.html', entradas=entradas)
 
-@app.route('/novo')
-def novo():
-    return "<h1> Nova página </h1>"
